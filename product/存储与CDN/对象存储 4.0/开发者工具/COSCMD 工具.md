@@ -116,8 +116,9 @@ schema = https
 3. bucket的命名规则为 `{name}-{appid}`
 
 
-### 指定 Bucket 的命令
--  通过`-b <bucket> 指定 Bucket`可以指定特定 Bucket。
+### Bucket 操作命令
+- Bucket的操作指令包括对Bucket的创建、删除，文件上传、下载、复制和删除，以及权限设置等操作。
+- 通过`-b <bucket> 指定 Bucket`可以指定特定 Bucket，并对该Bucket进行操作。
 - Bucket 的命名规则为`{name}-{appid}` ，此处填写的存储桶名称必须为此格式。
 ```
 coscmd -b <bucket> method ...  //命令格式
@@ -129,7 +130,6 @@ coscmd -b AAA-12344567 createbucket  //操作示例-创建 bucket
 -  建议配合`-b <bucket> 指定 Bucket`使用。
 ```
 coscmd -b <bucket> createbucket //命令格式
-coscmd createbucket  //操作示例
 coscmd -b AAA-12344567 createbucket  //操作示例
 ```
 
@@ -137,7 +137,6 @@ coscmd -b AAA-12344567 createbucket  //操作示例
 -  建议配合`-b <bucket> 指定 Bucket`使用。
 ```
 coscmd -b <bucket> deletebucket //命令格式
-coscmd createbucket  //操作示例
 coscmd -b AAA-12344567 deletebucket  //操作示例
 ```
 
@@ -256,7 +255,7 @@ coscmd info bbb/123.txt //操作示例
 ### 获取带签名的下载 URL
 - 命令如下：
 ```
-coscmd sigurl<cospath>  //命令格式
+coscmd sigurl <cospath>  //命令格式
 coscmd signurl bbb/123.txt //操作示例
 coscmd signurl bbb/123.txt -t 100//操作示例
 ```
@@ -272,8 +271,8 @@ coscmd putbucketacl --grant-read 12345678,12345678/11111 --grant-write anyone --
 ```
 使用如下命令设置 Object 的访问控制：
 ```
-coscmd putbucketacl [--grant-read GRANT_READ] [--grant-write GRANT_WRITE] [--grant-full-control GRANT_FULL_CONTROL] <cospath> //命令格式
-coscmd putbucketacl --grant-read 12345678,12345678/11111 --grant-write anyone --grant-full-control 12345678/22222 aaa/aaa.txt //操作示例
+coscmd putobjectacl [--grant-read GRANT_READ] [--grant-write GRANT_WRITE] [--grant-full-control GRANT_FULL_CONTROL] <cospath> //命令格式
+coscmd putobjectacl --grant-read 12345678,12345678/11111 --grant-write anyone --grant-full-control 12345678/22222 aaa/aaa.txt //操作示例
 ```
 
 ### ACL 设置指南
@@ -295,7 +294,7 @@ coscmd getbucketacl //操作示例
 ```
 - 使用如下命令设置 Object 的访问控制：
 ```
-coscmd putbucketacl <cospath> //命令格式
+coscmd getobjectacl <cospath> //命令格式
 coscmd getobjectacl aaa/aaa.txt //操作示例
 ```
 
